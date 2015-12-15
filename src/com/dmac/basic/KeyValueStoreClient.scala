@@ -7,7 +7,7 @@ object KeyValueStoreClient {
     
     println("Implementing KeyValueStore")
     
-    val voldemort = new VoldemortKeyValueStore
+    val voldemort = new VoldemortKeyValueStore("voldemort_property")
     voldemort.put(1)
   }
 }

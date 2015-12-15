@@ -1,7 +1,12 @@
 package com.dmac.basic
 
 
-class VoldemortKeyValueStore extends KeyValueStoreTrait {
+class VoldemortKeyValueStore(val keyStoreProperty : String) extends KeyValueStoreTrait {
+    
+  // Auxilary Constructor
+  def this(propertyName : Int) = {
+    this(propertyName.toString())
+  }
   
   def get() : String = {
     return ""
