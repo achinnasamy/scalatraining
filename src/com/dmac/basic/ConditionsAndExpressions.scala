@@ -12,22 +12,36 @@ object ConditionsAndExpressions {
     //forLoop.printTheArray(countries)
     
     // If there is only one parameter passed, then it can be accessed by the below means
-    forLoop printTheArray countries
-    
-    
+    val isPrinted = forLoop printTheArray countries
     forLoop.printIntegers()
+    
+    /***** if...else ****/
+    if (isPrinted) 
+      println("Printed the Countries")
+    else
+      println("Not printed any of those")
+    
+    
+    println(printMeManyTimes)
   }
   
+  
+  
+  def printMeManyTimes() : String = {
+    return "*" * 100
+  }
 }
 
 
 class ForLoop {
   
   
-  def printTheArray(listOfCountries : List[String]) : Unit = {
+  def printTheArray(listOfCountries : List[String]) : Boolean = {
     
     for (country <- listOfCountries)
       println(country)
+      
+      false
   }
   
   
