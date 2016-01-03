@@ -23,6 +23,9 @@ object ConditionsAndExpressions {
     
     
     println(printMeManyTimes)
+    
+    
+    forLoop.forLoopWithBooleanExpression
   }
   
   
@@ -58,4 +61,29 @@ class ForLoop {
       
       
   }
+  
+  
+  def forLoopWithBooleanExpression() {
+    
+    
+    println("\n\n\n For Loop With Boolean Expressions")
+    
+    val authProperties = List ("AUA",
+                               "ASA-Service Agency",
+                               "TID",
+                               "Version",
+                               "UID",
+                               "TXN",
+                               "Encrypted-SKEY",
+                               "Encrypted-SKEY-CertificateIdentifier",
+                               "Data-Type",
+                               "Data-Content-Encrypted-PID-XML",
+                               "Encrypted-SKEY")
+                               
+    for (authElement <- authProperties if (authElement.startsWith("Data")))
+      println(authElement)
+      
+  }
+  
+  
 }

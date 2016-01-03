@@ -21,6 +21,10 @@ object ScalaFunctions {
     clazz.retrieveEnvironmentProperties("chinuser","QA")
     
     clazz.saveAUA("BANG_AUA", "CHENNAI_AUA", "COIM_AUA")
+    
+    val cm = new CurryingMethods
+    cm.executePAF
+    cm.executeCurrying
   }
 }
 
@@ -51,8 +55,8 @@ class AScalaClass {
   /**
    * Function as a variable argument parameter
    */
-  def saveAUA(asa : String*) : Unit = {
-    for (i <- asa)
+  def saveAUA(aua : String*) : Unit = {
+    for (i <- aua)
       println(i)
   }
   
@@ -82,3 +86,36 @@ class AScalaClass {
   }
   
  }
+
+
+class CurryingMethods {
+  
+  val PRIMARY_SCHEMA = "PRIMARY"
+  val SECONDARY_SCHEMA = "SECONDARY"
+    
+  def persist(schema : String) (query : String) = {
+    println(s"Executing $query in $schema")  
+  }
+  
+  def curriedPersist(schema : String) = (query : String) => {
+    println(s"Executing $query in $schema")  
+  }
+  
+  // Partially Applied Function
+  def executePAF() {
+    val persistPrimary = persist (PRIMARY_SCHEMA) (_:String)
+    val persistSecondary = persist (SECONDARY_SCHEMA) (_:String)
+    
+    persistPrimary("Select * from RegressionReckoner")
+    persistSecondary("Select * from RegressionReckoner")
+  }
+  
+  // Currying Function
+  def executeCurrying() {
+    val persistPrimary = curriedPersist (PRIMARY_SCHEMA)
+    val persistSecondary = curriedPersist (SECONDARY_SCHEMA)
+    
+    persistPrimary("Select * from RegressionReckoner")
+    persistSecondary("Select * from RegressionReckoner")
+  }
+}

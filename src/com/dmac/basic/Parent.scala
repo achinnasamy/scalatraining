@@ -2,7 +2,7 @@ package com.dmac.basic
 
 class Parent extends GrandParent {
   
-  val name = "PARENT"
-
+  val parentName = "_PARENT_"
+  
   
 }

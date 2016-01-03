@@ -4,7 +4,9 @@ import sys.process._
 
 object ExecuteExternalCommand extends App {
   
-  val LS_COMMAND = "ls -l" !!
+  System.setProperty("", "")
+  val l = Process("ls")
+  //val LS_COMMAND = "ls -l" !!
   
-  println(LS_COMMAND)
+  println(l !!)
 }

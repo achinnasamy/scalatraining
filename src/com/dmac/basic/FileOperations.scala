@@ -35,4 +35,9 @@ class FileOperations {
     
     csvFile.close
   }
+  
+  
+  def writeFile(fileName: String) : Unit = {
+    
+  }
 }

@@ -2,6 +2,7 @@ package com.dmac.basic
 
 import scala.collection.mutable.ListBuffer
 
+
 object CollectionClasses {
   
   
@@ -41,7 +42,61 @@ object CollectionClasses {
      * ********************** Set ********************************
      	 Set is an immutable unordered collection of unique elements
      */
+    
+
+    println("\n\n\n Printing The Set")
+    val setOfNumbers = Set(1,1,2,2,3,3)
+    setOfNumbers.foreach { x => println(x) } // Prints 1,2,3 : Only unique elements
+    
+    // Converting a Immutable Set to Mutable Buffer
+    var mutableSetBuffer = setOfNumbers.toBuffer 
+    mutableSetBuffer += 100
+    val immutableSet = mutableSetBuffer.toSet
+    
+    {
+
+      import scala.collection.mutable.Set
+      println("\n\n\n Printing The Mutable Set")
+      val mutableSet = Set(1,2,2,3,3)
+      mutableSet.add(4)
+      mutableSet.foreach { x => println(x) }
+      
+    }
+    
+    
+    /*******************************************************************/
+    
+    /*******************************************************************/
+    // Map
+    
+    val cacheCleanerMap = Map(1 -> "AuaCacheCleaner",
+                              2 -> "AsaCacheCleaner",
+                              3 -> "ResidentDataCacheCleaner",
+                              4 -> "LicenseCacheCleaner")
+                       
+     cacheCleanerMap.foreach(x => println(x._1 + x._2))
      
+     // Converting a Immutable Map to Mutable Buffer
+     var cacheCleanerBuffer = cacheCleanerMap.toBuffer
+     cacheCleanerBuffer += (5 -> "")
+     
+     val immutableCacheCleanerMap = cacheCleanerBuffer.toMap
+     
+    /*******************************************************************/
+    
+    
+     {
+          println("\n\n\n Printing The Mutable Map")
+          import scala.collection.mutable.Map    
+          
+          val cacheCleanerMutableMap = Map(1 -> "AuaCacheCleaner",
+                                           2 -> "AsaCacheCleaner",
+                                           3 -> "ResidentDataCacheCleaner",
+                                           4 -> "LicenseCacheCleaner")
+          cacheCleanerMutableMap += (5 -> "_END_")
+          
+          cacheCleanerMutableMap foreach(x => println(x._1 + x._2))
+     }
       /*
        		Simple store
        */
