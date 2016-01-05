@@ -28,6 +28,14 @@ object ConditionsAndExpressions {
     forLoop.forLoopWithBooleanExpression
     
     forLoop forLoopWithYield
+    
+    var count = 0
+    
+    do {
+      count+=1
+      println("My count = " + count)
+    }
+    while(count < 10)
   }
   
   

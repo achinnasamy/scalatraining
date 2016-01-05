@@ -15,8 +15,22 @@ object InheritanceRules extends App {
      println(family.dt.parentName)
   } */
 
+  
+  val instance = new InstanceOF
+  instance passInRef(new Child)
 }
 
 class CovariantFamily[+A] (val data : A)
 
 //class ContraVariantFamily[-T] (val dt: T)
+
+
+class InstanceOF {
+  
+  def passInRef(parent : Parent) {
+    
+    val child = parent.asInstanceOf[Child]
+    println(child.childName)
+    
+  }
+}
