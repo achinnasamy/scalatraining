@@ -71,4 +71,25 @@ abstract class AbstractDatabaseOperation(name:String) {
 class MySQL(dataBaseName:String) extends AbstractDatabaseOperation(dataBaseName) {
   
 }
+
+/************************************************************************************/
+
+trait ZeusTrait {
+  def zeusMethod
+}
+
+trait SupremeTrait {
+  def supremeMethod
+}
+
+trait SuperTrait {
+  def superMethod() : String = {
+    "SUPER_TRAIT"
+  }
+}
+
+trait MyTrait extends SuperTrait 
+                      with SupremeTrait with ZeusTrait {
+  
+}
 /************************************************************************************/

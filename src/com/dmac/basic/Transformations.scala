@@ -11,11 +11,14 @@ object Transformations extends App {
 //  zipTransformation.otherTransformations
 //  zipTransformation parallelSequenceAndFlattening  
 //    zipTransformation findTransformation 
-    zipTransformation reverseTransformation
+//    zipTransformation reverseTransformation
     
-//  val foldLeftObj = new Fold
-//  foldLeftObj.elucidateFoldLeft
+  val foldLeftObj = new Fold
+ // foldLeftObj.elucidateFoldLeft
+  foldLeftObj elucidateReduceLeft
   
+  val reduce = new ReduceTransformation
+  reduce.elucidateReduceLeft 
   
 //  val mapTransformation = new MapTransformation
 //  mapTransformation.mapToBean()
@@ -198,6 +201,14 @@ class CountryCodeBeanTransformation {
   }
 }
 
+class ReduceTransformation {
+  
+  def elucidateReduceLeft() {
+    val stringList = List("A", "String", "in", "a", "list")
+    val resultList = stringList.reduceLeft((x,y) => x.concat(" ").concat(y))
+    println(resultList)
+  }
+}
 
 class Fold {
   
@@ -215,8 +226,22 @@ class Fold {
     println(result)
     
     
-    val rangeOfNumbers = 1 to 5
+    val stringList = List("A", "String", "in", "a", "list")
+    val resultList = stringList.foldLeft("The final String is : ")((x,y) => x.concat(" ").concat(y))
+    println(resultList)
+          
+    val rangeOfNumbers = 1 to 1000
     val rangeResult = rangeOfNumbers.foldLeft(0)((x,y) => x+y)
     println(rangeResult)
   }
+  
+  def elucidateFoldRight() { 
+    
+    val stringList = List("A", "String", "in", "a", "list")
+    val resultList = stringList.fold("The final String is : ")((x,y) => x.concat(" ").concat(y))
+    println(resultList)
+          
+  }
+  
+  
 }

@@ -1,6 +1,20 @@
 package com.dmac.basic
 
 import scala.collection.mutable.ListBuffer
+import scala.collection.mutable.HashMap
+import scala.collection.mutable.SynchronizedMap
+
+
+import scala.collection.parallel.mutable.ParArray
+import scala.collection.parallel.mutable.ParHashMap
+import scala.collection.parallel.mutable.ParMap
+import scala.collection.parallel.mutable.ParSet
+import scala.collection.parallel.mutable.ParSeq
+
+import scala.collection.parallel.immutable.ParHashSet
+import scala.collection.parallel.immutable.ParVector
+import scala.collection.parallel.immutable.ParSet
+import scala.collection.parallel.immutable.ParSeq
 
 
 object CollectionClasses {
@@ -8,6 +22,7 @@ object CollectionClasses {
   
   def main(args : Array[String] ) : Unit = {
   
+    
     
     /*
      * ********************** List ********************************
@@ -17,7 +32,7 @@ object CollectionClasses {
                                 "PKT_DUPLICATE",
                                 "PKT_BIOMETRIC_STAGE_ABIS")
                                     
-                                
+                          
     println(aadhaarPktState(1))
     
     for(i <- aadhaarPktState)
@@ -31,6 +46,12 @@ object CollectionClasses {
     
     // List can also be of various data types
     val multiTypeList = List(500, "INTERNAL_SERVER_ERROR", true)
+    
+    val parallelMultiTypeList = multiTypeList.par
+    
+    val parallelArray = ParArray(1,2,3)
+    val parallelHashMap = ParMap("key" -> "value")
+    
     
     var mutableList = new ListBuffer[Int]()
     mutableList += 1
@@ -97,11 +118,29 @@ object CollectionClasses {
           
           cacheCleanerMutableMap foreach(x => println(x._1 + x._2))
      }
-      /*
-       		Simple store
-       */
-      val bufferStore = collection.mutable.Buffer
-   
+      
+    
+      /** Mutable Stores **/
+    
+      // Uses List (Linked List) Internally
+      val listBufferStore = collection.mutable.ListBuffer(1,2,3)
+      
+      // Uses Arrays Internally
+      val arrayBufferStore = collection.mutable.ArrayBuffer(1,2,3)
+      
+      /**  Range **/
+      val range10 = 1 to 10
+      
+      val range20 = 1 until 21
+      
+      println("\n\n\n Printing ranges : ")
+      println(range10)
+      println(range20)
+      
+      range20.foreach { element => println(element) }
+      
+      for (element <- range20)
+        println(element)
     /*******************************************************************/
     // Tuple 
       
@@ -112,8 +151,33 @@ object CollectionClasses {
       
     /*******************************************************************/
       
-      
+     val anArrayStore = Array(1,2,3,4,4,5,5)
+     println("Element of an Array " + anArrayStore(6))
+    
+     anArrayStore.update(3, 99)
+     anArrayStore :+ 999
+     
+     
+     println("\n\n\n Printing Vector")
+     val vectorStore = Vector(1, 2, 3, 4, "Last Element")
+     val vectorStoreUpdated = 100 +: vectorStore :+ 999
+     
+     vectorStoreUpdated.foreach { x => println(x) }
+     
   }
   
+  // Parallel Collections
   
+}
+
+
+
+class SynchronizedCollectionMaker {
+  
+  import scala.collection.mutable.Map
+  
+  // DO NOT USE SynchronizedMap. Use Akka Actors
+  def mapMaker() : Map[String, String] = {
+    new HashMap[String, String] with SynchronizedMap[String, String]
+  }
 }

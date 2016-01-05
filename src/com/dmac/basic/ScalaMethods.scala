@@ -8,8 +8,19 @@ object ScalaMethods {
     val methodClass = new MethodClass
     println(methodClass.++("ARAVINDH "))
     println(methodClass ++ "ARAVINDH " )
-    
     methodClass printAll
+    
+    println (methodClass +!@%%%%%%^&* "NAME")
+    
+    
+    try {
+      methodClass designByContract("")
+    }
+    catch {
+      case ex : IllegalArgumentException => {
+        println("Exception caught " + ex)
+      }
+    }
   }
   
   
@@ -51,6 +62,14 @@ class MethodClass {
     ""
   }
   
+  def +!@%%%%%%^&* (input : String) : String = {
+    "COMPLEX_NAMING"
+  }
+  
+  
+  def designByContract(member : String) {
+    require(!member.isEmpty(), "MethodClass : member should not be empty")
+  }
   /**
    
   		A Higher Order Function

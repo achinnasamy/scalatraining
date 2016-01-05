@@ -16,6 +16,9 @@ object OptionUsage {
     
     val value = optionClazz.upperCaseLogger("logging  otp cache failure").get
     
+    val someValue = optionClazz.upperCaseLogger("PARTIALLY_ACCEPTABLE")
+    
+    println("Some Value : " + someValue)
     //println(optionClazz.upperCaseLogger("logging  otp cache failure"))
     println(value)
   }
@@ -24,7 +27,9 @@ object OptionUsage {
 
 class UsageOfOption {
   
-  def divide(value : Double, divisor: Double) : Option[Double] = {
+  val PA = new Some("PARTIALLY_ACCEPTABLE")
+  
+  @inline def divide(value : Double, divisor: Double) : Option[Double] = {
   
     if (divisor == 0) None
     else
@@ -32,13 +37,13 @@ class UsageOfOption {
   }
   
   
-  def upperCaseLogger(inputText : String) : Option[String] = {
+  @inline def upperCaseLogger(inputText : String) : Option[String] = {
     
     if (inputText == null || inputText.isEmpty()) None
+    //else if (inputText.equals(PA)) PA
     else {
-    
       val message = "APP_NAME LOG : ".concat(inputText)
-      Option(message)
+      Option(message) // This returns the Some internally
     
     }
   }

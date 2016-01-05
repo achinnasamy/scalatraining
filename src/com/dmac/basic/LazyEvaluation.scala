@@ -4,7 +4,17 @@ import scala.util.Random
 
 object LazyEvaluation {
   
+  def doExpensiveOperation() : Int = {
+      println("Doing Expensive Operation")
+      999
+  }
+  
   def main(args: Array[String]) {
+      
+    lazy val expensiveResource : Int = doExpensiveOperation
+  
+    
+    
     val lazzy = new Lazzy
     
     //println(lazzy.randomX)
@@ -12,11 +22,12 @@ object LazyEvaluation {
     
     //println(lazzy.randomY)
     
-    lazzy.returnStream()
+    //lazzy.returnStream()
   }
 }
 
 class Lazzy {
+  
   
   var randomVar = { println("Random Var"); Random.nextInt} 
   val randomX = { println("Random X"); Random.nextInt}

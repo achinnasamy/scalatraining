@@ -26,6 +26,8 @@ object ConditionsAndExpressions {
     
     
     forLoop.forLoopWithBooleanExpression
+    
+    forLoop forLoopWithYield
   }
   
   
@@ -83,6 +85,24 @@ class ForLoop {
     for (authElement <- authProperties if (authElement.startsWith("Data")))
       println(authElement)
       
+  }
+  
+  def forLoopWithYield() = {
+    
+    val vectorList = Vector(1,2,3,4,5)
+    
+    val vectorReturn = for (element <- vectorList) yield element*2
+    
+    
+    println(vectorReturn)
+    
+    
+    val evenNumberMultiplier = for (element <- vectorList if (element % 2 == 0)) yield element*2
+    println(evenNumberMultiplier)
+
+    println(evenNumberMultiplier)
+    
+    val vectorReturn3 = if (vectorList.size == 5) vectorList else None
   }
   
   

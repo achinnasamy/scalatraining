@@ -101,5 +101,20 @@ object Basics {
     val CONSTANT_STRING = "STRING"
     
     CONSTANT_STRING.drop(2).foreach { x => println(x) }
+    
+    
+    
+    val multiLineString = "First Line " +
+	                                    "Second Line"
+    
+    val multiLineStringAlias = """ This is first Line 
+                                           This is second line
+                                               This is third line """
+    
+    
+    println(multiLineString)
+    println(multiLineStringAlias)
+    
+    println(multiLineString(4))
   }
 }
