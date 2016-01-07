@@ -21,6 +21,14 @@ object ScalaMethods {
         println("Exception caught " + ex)
       }
     }
+    
+    
+    val simpleList = List(1,2,3,4,5)
+    
+    // A Function Name as a Variable
+    val functionNameAsVariable = (i:Int) => { i + 10}
+    simpleList.map(functionNameAsVariable).foreach { x => println(x) }
+    
   }
   
   

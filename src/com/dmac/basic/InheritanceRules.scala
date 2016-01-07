@@ -4,25 +4,32 @@ object InheritanceRules extends App {
   
   tellMeWhomAmI(new CovariantFamily[Child] (new Child))
   
-  //invokeContravariant(new ContraVariantFamily[Parent] (new Parent))
+  invokeContravariant(new ContraVariantFamily[GrandParent])
   
   def tellMeWhomAmI(family : CovariantFamily[Parent]) {
      println(family.data.parentName)
   }
   
-  /*
+  
   def invokeContravariant(family : ContraVariantFamily[Parent]) {
-     println(family.dt.parentName)
-  } */
+     println("")
+  } 
 
   
   val instance = new InstanceOF
   instance passInRef(new Child)
+  
+  
 }
 
 class CovariantFamily[+A] (val data : A)
 
-//class ContraVariantFamily[-T] (val dt: T)
+class ContraVariantFamily[-T] {
+  
+  def method(a: T) {
+    
+  }
+}
 
 
 class InstanceOF {

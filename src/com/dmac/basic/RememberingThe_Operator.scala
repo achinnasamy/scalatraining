@@ -16,4 +16,15 @@ object RememberingThe_Operator extends App {
   println(floatDefault) // 0.0
   println(doubleDefault) // 0.0 
 
+  var i=1
+  while (i < 10) {
+    i+= 1
+    println(i)
+  }
+  
+  class Inner {
+    
+  }
 }
+
+class Outer

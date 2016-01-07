@@ -4,7 +4,7 @@ import scala.collection.mutable.Map
 
 object Transformations extends App {
   
-  val zipTransformation = new ZipTransformation
+//  val zipTransformation = new ZipTransformation
 //  zipTransformation.doZip
 //  zipTransformation.doZipWithIndex
 //  zipTransformation.partitionMe
@@ -13,15 +13,15 @@ object Transformations extends App {
 //    zipTransformation findTransformation 
 //    zipTransformation reverseTransformation
     
-  val foldLeftObj = new Fold
+  //val foldLeftObj = new Fold
  // foldLeftObj.elucidateFoldLeft
-  foldLeftObj elucidateReduceLeft
+  //foldLeftObj elucidateReduceLeft
   
-  val reduce = new ReduceTransformation
-  reduce.elucidateReduceLeft 
+  //val reduce = new ReduceTransformation
+  //reduce.elucidateReduceLeft 
   
-//  val mapTransformation = new MapTransformation
-//  mapTransformation.mapToBean()
+  val mapTransformation = new MapTransformation
+  mapTransformation.mapToBean()
 }
 
 
@@ -172,13 +172,46 @@ class MapTransformation {
              .foreach { x => println(x) }
   }
   
+  
+  case class CountryNameCodeBean(var name: String, var code: String)
+
+  class CountryCodeBeanTransformation {
+    
+    def mapToCountryCode(countryNameBean : CountryNameBean) : CountryNameCodeBean = {
+      
+
+      if (countryNameBean.name == "Brazil") CountryNameCodeBean(countryNameBean.name, "BR")
+      else if (countryNameBean.name == "Austria") CountryNameCodeBean(countryNameBean.name, "AU") 
+      else CountryNameCodeBean(countryNameBean.name, "_NO_CODE_")
+    }
+  }
+
+  /*********************************** Bounded Types ************************************/
+  class MyOwnVariant[T]
+  
+  def referrentialArray[T <: AnyRef](xs: Array[T]): MyOwnVariant[T] = {
+    return new MyOwnVariant[T]
+  }
+  
+  
+  
+  class VariantParameterClass[T] 
+  
+  class ArrayListVariant[+T]
+  
+  // Input taking a bounded type which is a subtype of GrandParent
+  def myOwnVariantInput[T <: GrandParent] (name : VariantParameterClass[T]) {
+    
+  }
+  /*********************************** Bounded Types ************************************/
+  
   def mapToBean() {
     
     val countries = List("Brazil",
-                       "Austria", 
-                       "Bahamas",
-                       "Bangladesh",
-                       "Cook Islands")
+                         "Austria", 
+                         "Bahamas",
+                         "Bangladesh",
+                         "Cook Islands")
     
     val countryList = countries.map(country => CountryNameBean(country)).toList
     //countryList.foreach { x => println(x.name) }
@@ -186,20 +219,25 @@ class MapTransformation {
     val countryNameCodeList = countryList.map(x => new CountryCodeBeanTransformation().mapToCountryCode(x)).toList
     countryNameCodeList.foreach { x => println(x.name) }
     
+       
+    // Function Name as A Variable is Used when you want to modify the original object
+    val functionNameAsVariable = (countryNameBean:CountryNameBean) => 
+                                                    { 
+                                                          if (countryNameBean.name == "Brazil") countryNameBean.name = "BR"
+                                                          else if (countryNameBean.name == "Austria") countryNameBean.name = "AU"
+                                                          else countryNameBean.name = "_NO_CODE_"
+                                                    }
+    
+                                                    
+    println("\n\n\n Printing CountryNameCode ");
+    countryList.map(functionNameAsVariable)
+    
+    countryList.foreach { x => println("Names changed to code - " + x.name) }
+            
     }
 }
 
-case class CountryNameCodeBean(var name: String, var code: String)
 
-class CountryCodeBeanTransformation {
-  
-  def mapToCountryCode(countryNameBean : CountryNameBean) : CountryNameCodeBean = {
-    
-    if (countryNameBean.name == "Brazil") CountryNameCodeBean(countryNameBean.name, "BR")
-    else if (countryNameBean.name == "Austria") CountryNameCodeBean(countryNameBean.name, "AU") 
-    else CountryNameCodeBean(countryNameBean.name, "_NO_CODE_")
-  }
-}
 
 class ReduceTransformation {
   

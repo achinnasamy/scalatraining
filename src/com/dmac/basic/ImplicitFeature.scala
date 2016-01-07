@@ -2,8 +2,9 @@ package com.dmac.basic
 
 object ImplicitFeature {
   
+  implicit val floatValue = 167f
   
-  def printAge(name : String) {
+  def printAge(implicit name : String) {
     println(s"printing age of $name")
   }
   
@@ -12,13 +13,20 @@ object ImplicitFeature {
     "CHINNASAMY"
   }
   
-  /* Two implicit functions cannot be possible
+  
+  def getMeRoundedNumberOfFloat(implicit anyFloatValue : Float) {
+    println(anyFloatValue)  
+  }
+  
+  /* Two implicit functions cannot be possible 
   implicit def getName(age: Int) : String = {
     ""
   } */
   
   def main(args: Array[String]) {
     printAge(12)
+    
+    getMeRoundedNumberOfFloat 
   }
   
 }

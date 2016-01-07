@@ -1,5 +1,7 @@
 package com.dmac.basic
 
+import scala.util.control.Breaks
+
 object ConditionsAndExpressions {
   
   
@@ -51,7 +53,7 @@ class ForLoop {
   
   def printTheArray(listOfCountries : List[String]) : Boolean = {
     
-    for (country <- listOfCountries)
+    for (country <- listOfCountries) 
       println(country)
       
       false
@@ -63,6 +65,23 @@ class ForLoop {
     // Simple Loop
     for (i <- 1 to 10)
       println(i)
+    
+    val r = 100 to 1 by -1 // Reverse Printing
+    println(r)
+    
+    val loop = new Breaks
+    
+    println("\n\n\n Reverse Printing")
+    
+    loop.breakable {
+      for (i <- 50 to 1 by -1) {
+        println(i)
+        
+        if (i==40)
+          loop.break
+      }
+    }
+    println("\n\n\n Reverse Printing - Ended")
     
     // Nested Loop
     for {  i <- 1 to 10 
